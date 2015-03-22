@@ -1,0 +1,94 @@
+/*  Variables */
+$color-primary 		: #0088cc;
+$color-black 		: #272727;
+$color-white 		: #ffffff;
+
+$color-success 		: #377f31; // Green
+$color-danger 		: #880e14; // Red
+$color-warning 		: #dba909; // Yellow
+$color-code 		: #dd1144;
+
+$color-gray-dark 	: #808080;
+$color-gray-light 	: #e5e5e5;
+
+$icon-size 			: 1.5em;
+
+
+/* Mixins */
+
+// Strip units from values
+@function strip-unit($num) {
+	@return $num / ($num * 0 + 1);
+}
+
+// Calculate ems from pixels
+@function calc-em($px, $base: 16) {
+	$px: strip-unit($px);
+	$base: strip-unit($base);
+	@if $px == 1 {
+		@return 0.0725em;
+	}
+	@return ($px / $base) * 1em;
+}
+
+
+
+/* Buttons */
+
+.ssbtn {
+	display 		: inline-block;
+	font-size 		: 1em;
+	font-weight 	: normal;
+	background-color: $color-primary;
+	margin-right 	: 1%;
+	color 			: $color-white;
+	text-decoration : none;
+	text-align 		: center;
+	vertical-align 	: middle;
+
+	&:hover,
+	a &:hover,
+	&.active {
+		color 				: $color-white;
+		background-color 	: darken( $color-primary, 15% );
+		border-color 		: darken( $color-primary, 15% );
+	}
+
+	&:hover > svg {
+		filter: drop-shadow(0px 0px 4px $color-white);
+	}
+
+	svg {
+		width 		: $icon-size;
+		height 		: $icon-size;
+		fill 		: $color-white;
+		transition 	: all 0.3s ease;
+		margin 		: 0.5em;
+		float 		: left;
+	}
+
+	&:active,
+	&:focus,
+	&:hover,
+	&:visited {
+		outline: 0;
+	}
+}
+
+$networks: 'twitter' #41b7d8, 'facebook' #3b5997, 'google' #d64937, 'linkedin' #0073b2, 'pinterest' #cb2027, 'github' #3a3838, 'vk' #5e82a8, 'xing' #175e60, 'tumblr' #35465c, 'reddit' #ff5700, 'email' #0088cc;
+
+@each $network in $networks {
+	$prop: nth($network, 1);
+	$color: nth($network, 2);
+
+	.btn-#{$prop} {
+		background-color: $color;
+		border-color 	: $color;
+
+		&:hover,
+		a &:hover {
+			background-color: darken( $color, 15% );
+			border-color 	: darken( $color, 15% );
+		}
+	}
+}
