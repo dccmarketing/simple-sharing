@@ -34,7 +34,7 @@ $buttons 	= $shared->get_button_list();
 			<label class="ssbtn btn-<?php echo $lower; ?>" for="<?php echo $lower; ?>">
 				<span class="screen-reader-text"><?php
 
-					esc_html_e( 'Display the ' . $button , ' button.', 'simple-sharing' );
+					echo $shared->get_reader_text( $button );
 
 				?></span><?php
 

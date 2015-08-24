@@ -18,13 +18,42 @@ Some social sites have Sharing URLs where users are able to post things without 
 creates a set of buttons for those sites and allows site visitors to share one of your posts without heavy
 Javascript or API calls.
 
+= Features =
+There are currently eight options for sharing:
+* Buffer
+* Delicious
+* Digg
+* Email
+* Facebook
+* Google+
+* LinkedIn
+* Pinterest
+* Reddit
+* Stumbleupon
+* tumblr
+* Twitter
+* VK
+* Xing
+
+Each one can be "turned off" so it doesn't display on the site.
+
+There are two types of buttons: icons and text. The icons use an SVG icon on a solid-color background. Text uses the name of the sharing site on a solid-color background.
+
+The sharing buttons can be auto-displayed at the bottom of posts and/or pages.
+
+Shared content on Twitter and tumblr can be attributed back to your account.
+
+Button styles can be overridden in your theme.
+
+
+
 = Feedback =
 I'm happy to take feature requests. Here's my current todo list:
 * Make buttons sortable (drag and drop to reorder).
-* Make a modal instead of a pop-up window for sharing.
+* Give the option to use a modal instead of a pop-up window for sharing.
+* Add additional post types for auto-display options.
 * Add additional networks as I find them.
-* Add additional post types for auto-display.
-* Maybe a widget?
+* Maybe add a widget?
 
 If you want to add anything else, let me know:
 * Email: chris at slushman dot com
@@ -47,6 +76,9 @@ If you want to add anything else, let me know:
 
 == Frequently Asked Questions ==
 
+= How do "turn off" a button or not display a particular button on my site? =
+Go to the plugin settings and click on the button you'd like to remove. Save the settings.
+
 = Can the buttons appear automatically at the bottom of my posts? =
 Yes! Check which post type you want them to appear on in the plugin settings. As of version 1.0.0, it can add them automatically to post and/or pages. Other post types will be added in the future.
 
@@ -60,13 +92,13 @@ Yes! There are no shortcodes options/attributes, so its super-simple. Put `[simp
 No. If there is demand for a widget, I'll add it in a future version though.
 
 = What are the fields in the "Your Social Accounts" for?
-When Twitter and tumblr share something, they can attribute them back to the source. For example, on Twitter, it would look something like:
+When someone shares something on Delicious, Twitter, and/or tumblr, it can attributed back to the source (that would be you). For example, on Twitter, it would look something like:
 
 Article Title http://article-link.com via @your-twitter-name
 
 That last bit attributes the tweet back to you and you're notified someone tweeted a link to your article. To get that attribution for Twitter, just enter your Twitter username in the "Twitter Account" field and save the options.
 
-Same goes for tumblr.
+Same goes for tumblr and Delicious.
 
 = Why isn't a button for "___"? =
 These are simple sharing buttons using URLs provided by the network. Only these services provide that kind of thing; the other don't. I'd love to include Instagram, Flickr, YouTube, and others, but they all require you signing into their APIs in order to post. There are plenty of other plugins if you need those options. This one is meant to be simple.

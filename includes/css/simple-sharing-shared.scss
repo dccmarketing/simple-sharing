@@ -31,7 +31,9 @@ $icon-size 			: 1.75em;
 	display 		: inline-block;
 	font-size 		: 1em;
 	font-weight 	: normal;
-	margin-right 	: 1%;
+	margin-bottom 	: 0.5em;
+	margin-right 	: 0.5em;
+	min-width 		: 2.75em;
 	text-align 		: center;
 	text-decoration : none;
 	vertical-align 	: middle;
@@ -72,7 +74,7 @@ $icon-size 			: 1.75em;
 	}
 }
 
-$networks: 'twitter' #41b7d8, 'facebook' #3b5997, 'google' #d64937, 'linkedin' #0073b2, 'pinterest' #cb2027, 'github' #3a3838, 'vk' #5e82a8, 'xing' #175e60, 'tumblr' #35465c, 'reddit' #ff5700, 'email' #0088cc;
+$networks: 'buffer' #1E2225, 'delicious' #3399ff, 'digg' #000, 'email' #0088cc, 'facebook' #3b5997, 'google' #d64937, 'linkedin' #0073b2, 'pinterest' #cb2027, 'reddit' #ff5700, 'stumbleupon' #eb4924, 'tumblr' #35465c, 'twitter' #41b7d8, 'vk' #5e82a8, 'xing' #175e60;
 
 @each $network in $networks {
 	$prop: nth($network, 1);

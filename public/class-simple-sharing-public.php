@@ -205,28 +205,6 @@ class Simple_Sharing_Public {
 	} // get_email_url()
 
 	/**
-	 * Returns the correct screen reader span based on the button type plugin setting
-	 *
-	 * @since 	1.0.0
-	 * @param  	string 			$button 		The service name
-	 * @return 	string|mixed 				 	The label or SVG icon
-	 */
-	private function get_reader_text( $button ) {
-
-		$return 	= '';
-
-		switch( $this->options['button-type'] ) {
-
-			case 'text': $return = esc_html__( 'Share on', 'simple-sharing' ); break;
-			case 'icon': $return = sprintf( esc_html__( 'Share on %s', 'simple-sharing' ), $button ); break;
-
-		} // switch
-
-		return $return;
-
-	} // get_reader_text()
-
-	/**
 	 * Returns the sharing URL for the requested service
 	 *
 	 * @since 		1.0.0
@@ -251,20 +229,45 @@ class Simple_Sharing_Public {
 
 		switch ( $button ) {
 
+			case 'Buffer':
+				$args['url'] 			= $link;
+				$args['text'] 			= $title;
+				$base_url 				= 'http://bufferapp.com/add';
+			break;
+
+			case 'Delicious':
+				$args['v'] 				= 5;
+				$args['noui'] 			= '';
+				$args['jump'] 			= 'close';
+				$args['url'] 			= $link;
+				$args['title'] 			= $title;
+
+				if ( ! empty( $this->options['account-delicious'] ) ) {
+
+					$args['provider'] 	= $this->options['account-delicious'];
+
+				}
+
+				$base_url 				= 'https://delicious.com/save';
+			break;
+
+			case 'Digg':
+				$args['url'] 			= $link;
+				$args['title'] 			= $title;
+				$base_url 				= 'http://digg.com/submit';
+			break;
+
 			case 'Facebook':
-				// https://www.facebook.com/sharer/sharer.php?u=' . $link
 				$args['u'] 				= $link;
 				$base_url 				= 'https://www.facebook.com/sharer/sharer.php';
 			break;
 
 			case 'Google':
-				// https://plus.google.com/share?url=' . $link
 				$args['url'] 			= $link;
 				$base_url 				= 'https://plus.google.com/share';
 			break;
 
 			case 'LinkedIn':
-				// https://www.linkedin.com/shareArticle?mini=true&url=' . $link . '&title=' . $title . '&summary=' . $excerpt . '&source=' . $link
 				$args['mini'] 			= 'true';
 				$args['url'] 			= $link;
 				$args['title'] 			= $title;
@@ -274,7 +277,6 @@ class Simple_Sharing_Public {
 			break;
 
 			case 'Pinterest':
-				// https://pinterest.com/pin/create/button/?url=' . $link . '&description=' . $excerpt . '&media=' . $image
 				$args['url'] 			= $link;
 				$args['description'] 	= $excerpt;
 				$args['media'] 			= $image;
@@ -282,10 +284,15 @@ class Simple_Sharing_Public {
 			break;
 
 			case 'Reddit':
-			 	// http://www.reddit.com/submit?url=' . $link . '&title=' . $title
 				$args['url'] 			= $link;
 				$args['title'] 			= $title;
 				$base_url 				= 'http://www.reddit.com/submit';
+			break;
+
+			case 'Stumbleupon':
+				$args['url'] 			= $link;
+				$args['title'] 			= $title;
+				$base_url 				= 'http://www.stumbleupon.com/submit';
 			break;
 
 			case 'tumblr':
@@ -304,7 +311,6 @@ class Simple_Sharing_Public {
 			break;
 
 			case 'Twitter':
-				// https://twitter.com/intent/tweet?text=' . $title . '&url=' . $link . '&via=dccmarketing'
 				$args['text'] 			= $title;
 				$args['url'] 			= $link;
 
@@ -315,6 +321,22 @@ class Simple_Sharing_Public {
 				}
 
 				$base_url 				= 'https://twitter.com/intent/tweet';
+			break;
+
+			case 'VK':
+				$args['url'] 			= $link;
+				$args['title'] 			= $title;
+				$args['description'] 	= $excerpt;
+				$args['image'] 			= $image;
+				$args['noparse'] 		= true;
+				$base_url 				= 'https://vk.com/share.php';
+			break;
+
+			case 'Xing':
+				$args['op'] 			= 'share;';
+				$args['sc_p'] 			= 'xing-share;';
+				$args['url'] 			= $link;
+				$base_url 				= 'https://www.xing-share.com/app/user';
 			break;
 
 		} // switch

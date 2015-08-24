@@ -107,6 +107,18 @@ class Simple_Sharing_Admin {
 	 * @since 		1.0.0
 	 * @return 		mixed 			The settings field
 	 */
+	public function field_account_delicious() {
+
+		include( plugin_dir_path( __FILE__ ) . 'partials/simple-sharing-admin-field-account-delicious.php' );
+
+	} // field_account_delicious()
+
+	/**
+	 * Creates a settings field
+	 *
+	 * @since 		1.0.0
+	 * @return 		mixed 			The settings field
+	 */
 	public function field_account_twitter() {
 
 		include( plugin_dir_path( __FILE__ ) . 'partials/simple-sharing-admin-field-account-twitter.php' );
@@ -197,16 +209,23 @@ class Simple_Sharing_Admin {
 
 		$options[] 	= array( 'auto-post', 'checkbox', 0 );
 		$options[] 	= array( 'auto-page', 'checkbox', 0 );
+		$options[] 	= array( 'account-delicious', 'text', '' );
 		$options[] 	= array( 'account-tumblr', 'text', '' );
 		$options[] 	= array( 'account-twitter', 'text', '' );
+		$options[] 	= array( 'button-buffer', 'checkbox', 0 );
+		$options[] 	= array( 'button-delicious', 'checkbox', 0 );
+		$options[] 	= array( 'button-digg', 'checkbox', 0 );
 		$options[] 	= array( 'button-email', 'checkbox', 0 );
 		$options[] 	= array( 'button-facebook', 'checkbox', 0 );
 		$options[] 	= array( 'button-google', 'checkbox', 0 );
 		$options[] 	= array( 'button-linkedin', 'checkbox', 0 );
 		$options[] 	= array( 'button-pinterest', 'checkbox', 0 );
 		$options[] 	= array( 'button-reddit', 'checkbox', 0 );
+		$options[] 	= array( 'button-stumbleupon', 'checkbox', 0 );
 		$options[] 	= array( 'button-tumblr', 'checkbox', 0 );
 		$options[] 	= array( 'button-twitter', 'checkbox', 0 );
+		$options[] 	= array( 'button-vk', 'checkbox', 0 );
+		$options[] 	= array( 'button-xing', 'checkbox', 0 );
 		$options[] 	= array( 'button-type', 'select', 'icon' );
 
 		return $options;
@@ -338,6 +357,14 @@ class Simple_Sharing_Admin {
 		);
 
 		add_settings_field(
+			'account-delicious',
+			apply_filters( $this->plugin_name . '-label-account-delicious', esc_html__( 'Delicious Account', 'simple-sharing' ) ),
+			array( $this, 'field_account_delicious' ),
+			$this->plugin_name,
+			$this->plugin_name . '-accounts'
+		);
+
+		add_settings_field(
 			'account-twitter',
 			apply_filters( $this->plugin_name . '-label-account-twitter', esc_html__( 'Twitter Account', 'simple-sharing' ) ),
 			array( $this, 'field_account_twitter' ),
@@ -352,23 +379,6 @@ class Simple_Sharing_Admin {
 			$this->plugin_name,
 			$this->plugin_name . '-accounts'
 		);
-
-		/*$shared 	= new Simple_Sharing_Shared( $this->plugin_name, $this->version );
-		$buttons 	= $shared->get_button_list();
-
-		foreach ( $buttons as $button ) {
-
-			$lower = strtolower( $button );
-
-			add_settings_field(
-				'button-' . $lower,
-				apply_filters( $this->plugin_name . '-label-button-' . $lower, esc_html__( $button, 'simple-sharing' ) ),
-				array( $this, 'field_buttons' ),
-				$this->plugin_name,
-				$this->plugin_name . '-buttons'
-			);
-
-		} // foreach*/
 
 		add_settings_field(
 			'buttons',

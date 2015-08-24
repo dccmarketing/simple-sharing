@@ -31,7 +31,7 @@ foreach ( $buttons as $button ) {
 	?><a class="ssbtn btn-<?php echo $lower; ?>" href="<?php echo $this->get_url( $button ); ?>" rel="nofollow">
 		<span class="screen-reader-text"><?php
 
-			echo $this->get_reader_text( $button );
+			echo $shared->get_reader_text( $button );
 
 		?></span><?php
 
