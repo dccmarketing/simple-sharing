@@ -2,31 +2,38 @@
 	'use strict';
 
 	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
+	 * Creates a pop-up with the URL in the link's href attribute
 	 *
-	 * Note that this assume you're going to use jQuery, so it prepares
-	 * the $ function reference to be used within the scope of this
-	 * function.
+	 * @link 	https://jonsuh.com/blog/social-share-links/
 	 *
-	 * From here, you're able to define handlers for when the DOM is
-	 * ready:
+	 * @param 	string 		url 			A URL
+	 * @param 	float 		width			The width in pixels
+	 * @param 	float 		height 			The height in pixels
 	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * Or when the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and so on.
-	 *
-	 * Remember that ideally, we should not attach any more than a single DOM-ready or window-load handler
-	 * for any particular page. Though other scripts in WordPress core, other plugins, and other themes may
-	 * be doing this, we should try to minimize doing that in our own work.
+	 * @return 	void 						Creates a pop-up window
 	 */
+	$(function() {
+
+		function windowPopup(url, width, height) {
+
+			// Calculate the position of the popup so
+			// it’s centered on the screen.
+			var left = (screen.width / 2) - (width / 2),
+				top = (screen.height / 2) - (height / 2);
+
+			window.open(
+				url,
+				'',
+				'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=' + width + ',height=' + height + ',top=' + top + ',left=' + left
+			);
+		}
+
+		$('.ssbtn:not(.btn-email)').on('click', function(e) {
+			e.preventDefault();
+
+			windowPopup($(this).attr('href'), 500, 300);
+		});
+
+	});
 
 })( jQuery );

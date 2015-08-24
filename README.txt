@@ -1,114 +1,115 @@
 === Simple Sharing ===
 Contributors: slushman
 Donate link: http://slushman.com/
-Tags: comments, spam
+Tags: social, facebook, twitter, email, pinterest, linkedin, google plus, tumblr, reddit, sharing
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Tested up to: 4.3
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Simple Sharing creates buttons for social networks using Share URLs.
+
+
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Some social sites have Sharing URLs where users are able to post things without needing to access an API. Simple Sharing
+creates a set of buttons for those sites and allows site visitors to share one of your posts without heavy
+Javascript or API calls.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+= Feedback =
+I'm happy to take feature requests. Here's my current todo list:
+* Make buttons sortable (drag and drop to reorder)
+* Make a modal instead of a pop-up window for sharing
+* Maybe a widget?
 
-A few notes about the sections above:
+If you want to add anything else, let me know:
+* Email: chris at slushman dot com
+* Twitter [@slushman] (https://twitter.com/slushman)
+* Follow me on [Facebook] (https://www.facebook.com/slushmandesign)
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
 1. Upload `simple-sharing.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('Simple_Sharing_hook'); ?>` in your templates
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Set the plugin settings
+4. Use on your site:
+	1. Check the plugin setting for automatically placing the sharing buttons at the bottom of posts or pages
+	2. Put the [simplesharing] shortcode on a page or post
+	3. Place `<?php do_action('simplesharing'); ?>` in your templates
+
+
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Can the buttons appear automatically at the bottom of my posts? =
+Yes! Check which post type you want them to appear on in the plugin settings. As of version 1.0.0, it can add them automatically to post and/or pages. Other post types will be added in the future.
 
-An answer to that question.
+= Can I add them in my page template? Is there a template tag? =
+Yes and no. I'm using Andrew Nacin's suggestion of using a WordPress action instead of a template tag. Put `do_action( 'simplesharing' );` in the place you want them to appear.
 
-= What about foo bar? =
+= Is there a shortcode? =
+Yes! There are no shortcodes options/attributes, so its super-simple. Put `[simplesharing]` into any post, page, or content editor and the buttons will appear there.
 
-Answer to foo bar dilemma.
+= Is there a widget? =
+No. If there is demand for a widget, I'll add it in a future version though.
+
+= What are the fields in the "Your Social Accounts" for?
+When Twitter and tumblr share something, they can attribute them back to the source. For example, on Twitter, it would look something like:
+
+Article Title http://article-link.com via @your-twitter-name
+
+That last bit attributes the tweet back to you and you're notified someone tweeted a link to your article. To get that attribution for Twitter, just enter your Twitter username in the "Twitter Account" field and save the options.
+
+Same goes for tumblr.
+
+= Why isn't a button for "___"? =
+These are simple sharing buttons using URLs provided by the network. Only these services provide that kind of thing; the other don't. I'd love to include Instagram, Flickr, YouTube, and others, but they all require you signing into their APIs in order to post. There are plenty of other plugins if you need those options. This one is meant to be simple.
+
+= Can I reorder the buttons? =
+Not currently, but I'm working on it. I wanted to get a 1.0 version out ASAP, so here it is. Soon.
+
+= What about a modal window instead of a pop-up? =
+Yeah, I'd like that also. Soon.
+
+= What about adding "___"? =
+I'm happy to take feature requests. Here's my current todo list:
+* Make buttons sortable (drag and drop to reorder)
+* Make a modal instead of a pop-up window for sharing
+* Maybe a widget?
+
+If you want to add anything else, let me know:
+* Email: chris at slushman dot com
+* Twitter: [@slushman] (https://twitter.com/slushman)
+* Follow me [Facebook] (https://www.facebook.com/slushmandesign)
+
+
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. All the buttons, at the bottom of a post.
+2. The plugin settings page.
+
+
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= 1.0.0 =
+* First version.
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+
 
 == Upgrade Notice ==
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
+= 1.0.0 =
+First version.
 
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
 
-== Arbitrary section ==
 
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
+== Credits ==
 
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+Thanks to [Chris Ferdinandi](https://github.com/cferdinandi) for the original idea.
+Thanks to [Jon Suh](https://jonsuh.com/) for the great [tutorial](https://jonsuh.com/blog/social-share-links/) on the pop-up and sharing buttons.

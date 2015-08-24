@@ -12,18 +12,33 @@
  * @subpackage 	Simple_Sharing/public/partials
  */
 
-$return = '';
+?><div class="simple-sharing-buttons">
+	<span class="pre-btn-text"><?php
 
-$return .= '<div class="simple-sharing-buttons">';
-$return .= '<span class="pre-btn-text">' . apply_filters( 'simple-sharing-pre-button-text', __( 'Share This', 'dcc-marketing' ) . ': ' ) . '</span>';
+		echo apply_filters( 'simple-sharing-pre-button-text', esc_html__( 'Share This:', 'simple-sharing' ) );
 
-// Move this to plugin options later
-$networks = array( 'Email', 'Facebook', 'Google', 'LinkedIn', 'Pinterest', 'Reddit', 'tumblr', 'Twitter' );
+	?></span><?php
 
-foreach ( $networks as $network ) {
+$shared 	= new Simple_Sharing_Shared( $this->plugin_name, $this->version );
+$buttons 	= $shared->get_button_list();
 
-	$return .= '<a target="_blank" href="' . $this->get_url( $network ) . '" class="ssbtn btn-' . strtolower( $network ) . '" title="' . __( 'Share on', 'dcc-marketing' ) .  $network . '">' . $this->get_svg( $network ) . '</a>';
+foreach ( $buttons as $button ) {
+
+	$lower = strtolower( $button );
+
+	if ( empty( $this->options['button-' . $lower] ) ) { continue; }
+
+	?><a class="ssbtn btn-<?php echo $lower; ?>" href="<?php echo $this->get_url( $button ); ?>" rel="nofollow">
+		<span class="screen-reader-text"><?php
+
+			echo $this->get_reader_text( $button );
+
+		?></span><?php
+
+		echo $shared->get_label( $button );
+
+	?></a><?php
 
 } // foreach
 
-$return .= '</div>';
+?></div>

@@ -23,6 +23,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Used for referring to the plugin file or basename
+if ( ! defined( 'SIMPLE_SHARING_FILE' ) ) {
+	define( 'SIMPLE_SHARING_FILE', plugin_basename( __FILE__ ) );
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-simple-sharing-activator.php

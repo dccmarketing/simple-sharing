@@ -44,9 +44,27 @@ class Simple_Sharing {
 	 *
 	 * @since 		1.0.0
 	 * @access 		protected
-	 * @var 		string 			$Simple_Sharing    The string used to uniquely identify this plugin.
+	 * @var 		string 			$plugin_name    The string used to uniquely identify this plugin.
 	 */
-	protected $Simple_Sharing;
+	protected $plugin_name;
+
+	/**
+	 * Sanitizer for cleaning user input
+	 *
+	 * @since 		1.0.0
+	 * @access 		private
+	 * @var 		Simple_Sharing_Sanitize    $sanitizer    Sanitizes data
+	 */
+	private $sanitizer;
+
+	/**
+	 * Shared methods
+	 *
+	 * @since 		1.0.0
+	 * @access 		protected
+	 * @var 		Simple_Sharing_Shared    $shared    Methods shared by the admin and public
+	 */
+	protected $shared;
 
 	/**
 	 * The current version of the plugin.
@@ -68,7 +86,7 @@ class Simple_Sharing {
 	 */
 	public function __construct() {
 
-		$this->Simple_Sharing = 'simple-sharing';
+		$this->plugin_name = 'simple-sharing';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
@@ -119,7 +137,19 @@ class Simple_Sharing {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-simple-sharing-public.php';
 
+		/**
+		 * The class responsible for sanitizing user input
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-simple-sharing-sanitize.php';
+
+		/**
+		 * The class with methods shared by admin and public
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-simple-sharing-shared.php';
+
 		$this->loader = new Simple_Sharing_Loader();
+		$this->sanitizer = new Simple_Sharing_Sanitize();
+		$this->shared = new Simple_Sharing_Shared( $this->plugin_name, $this->version );
 
 	}
 
@@ -135,8 +165,7 @@ class Simple_Sharing {
 	private function set_locale() {
 
 		$plugin_i18n = new Simple_Sharing_i18n();
-		$plugin_i18n->set_domain( $this->get_Simple_Sharing() );
-
+		$plugin_i18n->set_domain( $this->get_plugin_name() );
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
 	}
@@ -150,10 +179,17 @@ class Simple_Sharing {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Simple_Sharing_Admin( $this->get_Simple_Sharing(), $this->get_version() );
+		$plugin_admin = new Simple_Sharing_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', 	$plugin_admin, 	'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', 	$plugin_admin, 	'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_fields' );
+		$this->loader->add_action( 'plugin_action_links_' . SIMPLE_SHARING_FILE, $plugin_admin, 'link_settings' );
+		$this->loader->add_action( 'plugin_row_meta', $plugin_admin, 'link_row', 10, 2 );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_sections' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_fields' );
 
 	}
 
@@ -166,12 +202,32 @@ class Simple_Sharing {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Simple_Sharing_Public( $this->get_Simple_Sharing(), $this->get_version() );
+		$plugin_public = new Simple_Sharing_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', 	$plugin_public, 	'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', 	$plugin_public, 	'enqueue_scripts' );
-		$this->loader->add_action( 'init', 					$plugin_public, 	'register_shortcodes' );
-		$this->loader->add_filter( 'the_content', 			$plugin_public, 	'add_sharing_buttons', 19 );
+		$this->loader->add_action( 'wp_enqueue_scripts', $this, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
+		$this->loader->add_filter( 'the_content', $plugin_public, 'add_sharing_buttons', 19 );
+
+		/**
+		 * Action instead of template tag.
+		 *
+		 * do_action( 'simplesharing' );
+		 *
+		 * @link 	http://nacin.com/2010/05/18/rethinking-template-tags-in-plugins/
+		 */
+		$this->loader->add_action( 'simplesharing', $plugin_public, 'shortcode' );
+
+	}
+
+	/**
+	 * Register the stylesheets for the Dashboard.
+	 *
+	 * @since 		1.0.0
+	 */
+	public function enqueue_styles() {
+
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-sharing-shared.css', array(), $this->version, 'all' );
 
 	}
 
@@ -191,8 +247,8 @@ class Simple_Sharing {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_Simple_Sharing() {
-		return $this->Simple_Sharing;
+	public function get_plugin_name() {
+		return $this->plugin_name;
 	}
 
 	/**
@@ -215,4 +271,4 @@ class Simple_Sharing {
 		return $this->version;
 	}
 
-}
+} // class
