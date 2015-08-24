@@ -20,8 +20,10 @@ Javascript or API calls.
 
 = Feedback =
 I'm happy to take feature requests. Here's my current todo list:
-* Make buttons sortable (drag and drop to reorder)
-* Make a modal instead of a pop-up window for sharing
+* Make buttons sortable (drag and drop to reorder).
+* Make a modal instead of a pop-up window for sharing.
+* Add additional networks as I find them.
+* Add additional post types for auto-display.
 * Maybe a widget?
 
 If you want to add anything else, let me know:
