@@ -341,17 +341,17 @@ class Simple_Sharing_Admin {
 		// add_settings_field( $id, $title, $callback, $menu_slug, $section, $args );
 
 		add_settings_field(
-			'auto-post',
-			apply_filters( $this->plugin_name . '-label-auto-posts', esc_html__( 'After posts', 'simple-sharing' ) ),
-			array( $this, 'field_auto_posts' ),
+			'auto-page',
+			apply_filters( $this->plugin_name . '-label-auto-pages', esc_html__( 'After pages', 'simple-sharing' ) ),
+			array( $this, 'field_auto_pages' ),
 			$this->plugin_name,
 			$this->plugin_name . '-auto-display'
 		);
 
 		add_settings_field(
-			'auto-page',
-			apply_filters( $this->plugin_name . '-label-auto-pages', esc_html__( 'After pages', 'simple-sharing' ) ),
-			array( $this, 'field_auto_pages' ),
+			'auto-post',
+			apply_filters( $this->plugin_name . '-label-auto-posts', esc_html__( 'After posts', 'simple-sharing' ) ),
+			array( $this, 'field_auto_posts' ),
 			$this->plugin_name,
 			$this->plugin_name . '-auto-display'
 		);
@@ -365,17 +365,17 @@ class Simple_Sharing_Admin {
 		);
 
 		add_settings_field(
-			'account-twitter',
-			apply_filters( $this->plugin_name . '-label-account-twitter', esc_html__( 'Twitter Account', 'simple-sharing' ) ),
-			array( $this, 'field_account_twitter' ),
+			'account-tumblr',
+			apply_filters( $this->plugin_name . '-label-account-tumblr', esc_html__( 'Tumblr Account', 'simple-sharing' ) ),
+			array( $this, 'field_account_tumblr' ),
 			$this->plugin_name,
 			$this->plugin_name . '-accounts'
 		);
 
 		add_settings_field(
-			'account-tumblr',
-			apply_filters( $this->plugin_name . '-label-account-tumblr', esc_html__( 'Tumblr Account', 'simple-sharing' ) ),
-			array( $this, 'field_account_tumblr' ),
+			'account-twitter',
+			apply_filters( $this->plugin_name . '-label-account-twitter', esc_html__( 'Twitter Account', 'simple-sharing' ) ),
+			array( $this, 'field_account_twitter' ),
 			$this->plugin_name,
 			$this->plugin_name . '-accounts'
 		);
