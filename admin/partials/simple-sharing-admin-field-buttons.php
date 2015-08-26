@@ -29,8 +29,8 @@ $buttons 	= $shared->get_button_list();
 
 		}
 
-		?><li class="btn-wrap">
-			<input type="checkbox" name="<?php echo $this->plugin_name; ?>-options[button-<?php echo $lower; ?>]" id="<?php echo $this->plugin_name; ?>-options[button-<?php echo $lower; ?>]" value="1" <?php checked( 1, $option, true ); ?> />
+		?><li class="btn-wrap" title="<?php echo $button; ?>">
+			<input <?php checked( 1, $option, true ); ?> id="<?php echo $this->plugin_name; ?>-options[button-<?php echo $lower; ?>]" name="<?php echo $this->plugin_name; ?>-options[button-<?php echo $lower; ?>]" type="checkbox" value="1"  />
 			<label class="ssbtn btn-<?php echo $lower; ?>" for="<?php echo $lower; ?>">
 				<span class="screen-reader-text"><?php
 

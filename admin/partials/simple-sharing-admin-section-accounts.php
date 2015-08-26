@@ -10,4 +10,4 @@
  * @subpackage 	Simple_Sharing/admin/partials
  */
 
-?><p><?php esc_html_e( 'Enter your username(s) for each account for correct attributions on shared items on these sites.', 'simple-sharing' ); ?></p>
+?><p><?php esc_html_e( 'Enter your username(s) for each account for correct attributions on shared items on these sites. This is completely optional.', 'simple-sharing' ); ?></p>
