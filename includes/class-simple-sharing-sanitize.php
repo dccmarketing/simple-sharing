@@ -76,6 +76,7 @@ class Simple_Sharing_Sanitize {
 			case 'text'				: $sanitized = sanitize_text_field( $this->data ); break;
 
 			case 'checkbox'			: $sanitized = ( isset( $this->data ) ? 1 : 0 ); break;
+			case 'editor' 			: $sanitized = wp_kses_post( $this->data ); break;
 			case 'email'			: $sanitized = sanitize_email( $this->data ); break;
 			case 'file'				: $sanitized = sanitize_file_name( $this->data ); break;
 			case 'tel'				: $sanitized = $this->sanitize_phone( $this->data ); break;

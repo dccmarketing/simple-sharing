@@ -11,10 +11,10 @@
  */
 
 $shared 	= new Simple_Sharing_Shared( $this->plugin_name, $this->version );
-$buttons 	= $shared->get_button_list();
+$buttons 	= $shared->get_button_array();
 
 ?><fieldset>
-	<legend><?php esc_html_e( 'Select any of the following buttons to display as sharing options:', 'simple-sharing' ); ?></legend>
+	<legend><?php esc_html_e( 'Click any of the following buttons to display as a sharing option:', 'simple-sharing' ); ?></legend>
 	<ul id="btns-sort"><?php
 
 	foreach ( $buttons as $button ) {
@@ -29,8 +29,8 @@ $buttons 	= $shared->get_button_list();
 
 		}
 
-		?><li class="btn-wrap" title="<?php echo $button; ?>">
-			<input <?php checked( 1, $option, true ); ?> id="<?php echo $this->plugin_name; ?>-options[button-<?php echo $lower; ?>]" name="<?php echo $this->plugin_name; ?>-options[button-<?php echo $lower; ?>]" type="checkbox" value="1"  />
+		?><li class="btn-wrap" data-id="<?php echo $button ?>" id="btn-<?php echo $button; ?>" title="<?php echo $button; ?>">
+			<input <?php checked( 1, $option, true ); ?> class="handle" id="button-<?php echo $lower; ?>" name="<?php echo $this->plugin_name; ?>-options[button-<?php echo $lower; ?>]" type="checkbox" value="1"  />
 			<label class="ssbtn btn-<?php echo $lower; ?>" for="<?php echo $lower; ?>">
 				<span class="screen-reader-text"><?php
 
@@ -46,4 +46,6 @@ $buttons 	= $shared->get_button_list();
 	} // foreach
 
 	?></ul>
+	<input id="button-order" name="<?php echo $this->plugin_name; ?>-options[button-order]" type="hidden" value="<?php echo $this->options['button-order']; ?>">
 </fieldset>
+<div class="" id="button-status"></div>

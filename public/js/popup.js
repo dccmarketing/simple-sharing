@@ -28,7 +28,7 @@
 			);
 		}
 
-		$('.ssbtn:not(.btn-email)').on('click', function(e) {
+		$('.popup:not(.btn-email)').on('click', function(e) {
 			e.preventDefault();
 
 			windowPopup($(this).attr('href'), 500, 300);

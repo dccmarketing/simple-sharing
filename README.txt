@@ -49,10 +49,9 @@ Button styles can be overridden in your theme.
 
 = Feedback =
 I'm happy to take feature requests. Here's my current todo list:
-* Make buttons sortable (drag and drop to reorder).
+* Save on/off selections via AJAX
 * Give the option to use a modal instead of a pop-up window for sharing.
 * Add additional post types for auto-display options.
-* Add additional networks as I find them.
 * Maybe add a widget?
 
 If you want to add anything else, let me know:

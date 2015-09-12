@@ -1,7 +1,7 @@
 /*  Variables */
 $color-primary 		: #0088cc;
 $color-black 		: #272727;
-$color-white 		: #ffffff;
+$color-white 		: #fff;
 
 $color-success 		: #377f31; // Green
 $color-danger 		: #880e14; // Red
@@ -9,6 +9,7 @@ $color-warning 		: #dba909; // Yellow
 $color-code 		: #dd1144;
 
 $color-gray-dark 	: #808080;
+$color-gray-medium	: #ccc;
 $color-gray-light 	: #e5e5e5;
 
 $icon-size 			: 1.75em;
@@ -47,12 +48,6 @@ $icon-size 			: 1.75em;
 		color 				: $color-white;
 	}
 
-	&:hover {
-		> svg {
-			filter: drop-shadow(0px 0px 4px $color-white);
-		}
-	}
-
 	svg {
 		fill 		: $color-white;
 		float 		: left;
@@ -75,7 +70,26 @@ $icon-size 			: 1.75em;
 	}
 }
 
-$networks: 'buffer' #1E2225, 'delicious' #3399ff, 'digg' #000, 'email' #0088cc, 'facebook' #3b5997, 'google' #d64937, 'linkedin' #0073b2, 'pinterest' #cb2027, 'reddit' #ff5700, 'stumbleupon' #eb4924, 'tumblr' #35465c, 'twitter' #41b7d8, 'vk' #5e82a8, 'xing' #175e60;
+$networks:
+	'baidu' #de0f17,
+	'buffer' #1E2225,
+	'delicious' #3399ff,
+	'digg' #000,
+	'douban' #072,
+	'email' #0088cc,
+	'facebook' #3b5997,
+	'google' #DC4E41,
+	'linkedin' #0073b2,
+	'pinterest' #cb2027,
+	'qzone' #cb2027,
+	'reddit' #ff5700,
+	'renren' #005EAC,
+	'stumbleupon' #eb4924,
+	'tumblr' #35465c,
+	'twitter' #41b7d8,
+	'vk' #5e82a8,
+	'weibo' #E71D34,
+	'xing' #175e60;
 
 @each $network in $networks {
 	$prop: nth($network, 1);
@@ -90,30 +104,34 @@ $networks: 'buffer' #1E2225, 'delicious' #3399ff, 'digg' #000, 'email' #0088cc, 
 			background-color: darken( $color, 15% );
 			border-color 	: darken( $color, 15% );
 		}
+
+		.wp-admin & {
+			filter: grayscale( 100% );
+
+			&:hover,
+			a &:hover {
+				background-color: $color;
+				border-color 	: $color;
+				filter 			: grayscale( 0% );
+				opacity 		: 0.75;
+			}
+		}
 	}
 }
 
 .btn-wrap {
-	display 	: inline-block;
-	margin 		: 0 4px;
-	position 	: relative;
+	display 		: inline-block;
+	margin 			: 0 4px;
+	position 		: relative;
+	vertical-align 	: top;
 
 	input[type="checkbox"] {
-		bottom 		: 0;
-		cursor 		: pointer;
-		height 		: 100%;
-		left 		: 0;
-		margin 		: 0;
-		opacity 	: 0;
-		position 	: absolute;
-		right 		: 0;
-		top 		: 0;
-		width 		: 100%;
-		z-index 	: 100;
+		display: none;
 
 		&:checked {
 			~ label {
-				opacity: 1;
+				filter 	: grayscale( 0% );
+				opacity : 1;
 			}
 		}
 	}
@@ -123,3 +141,24 @@ $networks: 'buffer' #1E2225, 'delicious' #3399ff, 'digg' #000, 'email' #0088cc, 
 		opacity : 0.5;
 	}
 }
+
+#button-status {
+	background-color: #fff;
+	border-left 	: 4px solid #fff;
+	box-shadow 		: 0 1px 1px 0 rgba(0,0,0,.1);
+	margin 			: 5px 15px 2px 3px;
+
+	&.updated {
+		border-color: #7ad03a;
+	}
+
+	&.error {
+		border-color: #dd3d36;
+	}
+
+	.status {
+		display: block;
+		padding: 10px 12px;
+	}
+}
+

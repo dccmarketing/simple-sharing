@@ -20,7 +20,17 @@
 	?></span><?php
 
 $shared 	= new Simple_Sharing_Shared( $this->plugin_name, $this->version );
-$buttons 	= $shared->get_button_list();
+$buttons 	= $shared->get_button_array();
+
+if (  ) {
+
+	$class = 'modal';
+
+} else {
+
+	$class = 'popup';
+
+}
 
 foreach ( $buttons as $button ) {
 
@@ -28,7 +38,7 @@ foreach ( $buttons as $button ) {
 
 	if ( empty( $this->options['button-' . $lower] ) ) { continue; }
 
-	?><a class="ssbtn btn-<?php echo $lower; ?>" href="<?php echo $this->get_url( $button ); ?>" rel="nofollow">
+	?><a class="ssbtn btn-<?php echo $lower . ' ' . $class; ?>" href="<?php echo $this->get_url( $button ); ?>" rel="nofollow">
 		<span class="screen-reader-text"><?php
 
 			echo $shared->get_reader_text( $button );

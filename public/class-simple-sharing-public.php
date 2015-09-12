@@ -76,6 +76,8 @@ class Simple_Sharing_Public {
 	 *      its a feed
 	 *      its an excerpt
 	 *      its not the main query
+	 *      its a post type that isn't publicly viewable
+	 *      its a post type that isn't in the settings
 	 *      its a singular post of a type, but the box for that type isn't checked
 	 *      The current filter isn't 'the_content'
 	 * Otherwise, return the $text with the sharing button at the bottom
@@ -111,9 +113,15 @@ class Simple_Sharing_Public {
 
 		foreach ( $wp_post_types as $post_type ) {
 
-			if ( empty( $post_type->public ) ) { continue; }
+			if ( empty( $post_type->public ) ) { $skip = true; }
 
-			if ( $post_type->name == $post->post_type && is_singular( $post_type->name ) && empty( $this->options['auto-' . $post_type->name ] ) ) {
+			if ( ! array_key_exists( 'auto-' . $post_type->name , $this->options ) ) { $skip = true; }
+
+			if ( $post_type->name == $post->post_type
+				&& is_singular( $post_type->name )
+				&& empty( $this->options['auto-' . $post_type->name ] )
+
+			) {
 
 				$skip = true;
 
@@ -165,7 +173,7 @@ class Simple_Sharing_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-sharing-public.min.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/popup.min.js', array( 'jquery' ), $this->version, true );
 
 	}
 
@@ -199,7 +207,6 @@ class Simple_Sharing_Public {
 		$args['body'] 		= $excerpt . '%0A%0A' . get_permalink();
 		$base_url 			= 'mailto:';
 
-
 		return add_query_arg( $args, $base_url );
 
 	} // get_email_url()
@@ -229,6 +236,13 @@ class Simple_Sharing_Public {
 
 		switch ( $button ) {
 
+			case 'Baidu':
+				$args['buttontype'] 	= 'small';
+				$args['cb'] 			= 'bdShare.ajax._callbacks.bd4bb141b';
+				$args['index'] 			= $link;
+				$base_url 				= 'http://like.baidu.com/set';
+			break;
+
 			case 'Buffer':
 				$args['url'] 			= $link;
 				$args['text'] 			= $title;
@@ -257,6 +271,12 @@ class Simple_Sharing_Public {
 				$base_url 				= 'http://digg.com/submit';
 			break;
 
+			case 'Douban':
+				$args['url'] 			= $link;
+				$args['title'] 			= $title;
+				$base_url 				= 'http://www.douban.com/recommend/';
+			break;
+
 			case 'Facebook':
 				$args['u'] 				= $link;
 				$base_url 				= 'https://www.facebook.com/sharer/sharer.php';
@@ -283,10 +303,23 @@ class Simple_Sharing_Public {
 				$base_url 				= 'https://pinterest.com/pin/create/button/';
 			break;
 
+			case 'QZone':
+				$args['url'] 			= $link;
+				$args['description'] 	= $excerpt;
+				$args['media'] 			= $image;
+				$base_url 				= 'https://pinterest.com/pin/create/button/';
+			break;
+
 			case 'Reddit':
 				$args['url'] 			= $link;
 				$args['title'] 			= $title;
 				$base_url 				= 'http://www.reddit.com/submit';
+			break;
+
+			case 'Renren':
+				$args['link'] 			= $link;
+				$args['title'] 			= $title;
+				$base_url 				= 'http://share.renren.com/share/buttonshare.do';
 			break;
 
 			case 'Stumbleupon':
@@ -330,6 +363,16 @@ class Simple_Sharing_Public {
 				$args['image'] 			= $image;
 				$args['noparse'] 		= true;
 				$base_url 				= 'https://vk.com/share.php';
+			break;
+
+			case 'Weibo':
+				$args['url'] 			= $link;
+				$args['appkey'] 		= '';
+				$args['title'] 			= $title;
+				$args['pic'] 			= $image;
+				$args['ralateUid'] 		= '';
+				$args['language'] 		= 'zh_cn';
+				$base_url 				= 'http://service.weibo.com/share/share.php';
 			break;
 
 			case 'Xing':
