@@ -1,97 +1,94 @@
 === Simple Sharing ===
 Contributors: slushman
 Donate link: http://slushman.com/
-Tags: social, facebook, twitter, email, pinterest, linkedin, google plus, tumblr, reddit, sharing
+Tags: social, sharing, buttons, baidu, buffer, delicious, digg, douban, email, evernote, facebook, google plus, linkedin, pinterest, qzone, reddit, renren, stumbleupon, tumblr, twitter, vk, weibo, xing
 Requires at least: 3.0.1
-Tested up to: 4.3
+Tested up to: 4.3.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Sharing creates buttons for social networks using Share URLs.
+Simple Sharing creates buttons for sharing your content on social networks using Share URLs.
 
 
 
 == Description ==
 
-Some social sites have Sharing URLs where users are able to post things without needing to access an API. Simple Sharing
-creates a set of buttons for those sites and allows site visitors to share one of your posts without heavy
-Javascript or API calls.
+Simple Sharing creates a set of buttons for sites that offer sharing URLs, allowing site visitors to share your content without heavy Javascript or API calls.
 
 = Features =
-There are currently eight options for sharing:
+These are the current sharing options:
+* Baidu
 * Buffer
 * Delicious
 * Digg
+* Douban
 * Email
+* Evernote
 * Facebook
 * Google+
 * LinkedIn
 * Pinterest
+* QZone
 * Reddit
+* Renren
 * Stumbleupon
 * tumblr
 * Twitter
 * VK
+* Weibo
 * Xing
 
-Each one can be "turned off" so it doesn't display on the site.
+Each button can be selected or unselected and reordered. The buttons can appear either with the name or icon with the respective site. Each appears on a solid-color background, using the brand color of the respective site. Any of the colors and styling can be overridden in your theme's CSS.
 
-There are two types of buttons: icons and text. The icons use an SVG icon on a solid-color background. Text uses the name of the sharing site on a solid-color background.
+The sharing buttons can be auto-displayed at the bottom of posts and/or pages. The sharing URL can behave as a typical link or appear in a pop-up window.
 
-The sharing buttons can be auto-displayed at the bottom of posts and/or pages.
-
-Shared content on Twitter and tumblr can be attributed back to your account.
-
-Button styles can be overridden in your theme.
+Shared content on Delicious, tumblr, and Twitter can be attributed back to your account.
 
 
-
+h
 = Feedback =
 I'm happy to take feature requests. Here's my current todo list:
 * Save on/off selections via AJAX
 * Give the option to use a modal instead of a pop-up window for sharing.
 * Add additional post types for auto-display options.
-* Maybe add a widget?
 
 If you want to add anything else, let me know:
 * Email: chris at slushman dot com
 * Twitter [@slushman] (https://twitter.com/slushman)
 * Follow me on [Facebook] (https://www.facebook.com/slushmandesign)
+* File bug reports and/or suggestions on [Github] (https://github.com/slushman/simple-sharing)
 
 
 
 == Installation ==
 
-1. Upload `simple-sharing.php` to the `/wp-content/plugins/` directory
+1. Upload the plugin folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Set the plugin settings
-4. Use on your site:
-	1. Check the plugin setting for automatically placing the sharing buttons at the bottom of posts or pages
-	2. Put the [simplesharing] shortcode on a page or post
-	3. Place `<?php do_action('simplesharing'); ?>` in your templates
+4. Display the buttons on your site by doing one or more of the following:
+	* Checking the plugin setting for automatically placing the sharing buttons at the bottom of posts and/or pages
+	* Putting the [simplesharingbuttons] shortcode on a page or post
+	* Placing `<?php echo apply_filters( 'simplesharing', '' ); ?>` in your templates
 
 
 
 == Frequently Asked Questions ==
 
-= How do "turn off" a button or not display a particular button on my site? =
-Go to the plugin settings and click on the button you'd like to remove. Save the settings.
+= Can I chose which buttons are dusplayed on my site? =
+Go to the plugin settings and click on the buttons you'd like to display. Save the settings.
 
 = Can the buttons appear automatically at the bottom of my posts? =
 Yes! Check which post type you want them to appear on in the plugin settings. As of version 1.0.0, it can add them automatically to post and/or pages. Other post types will be added in the future.
 
 = Can I add them in my page template? Is there a template tag? =
-Yes and no. I'm using Andrew Nacin's suggestion of using a WordPress action instead of a template tag. Put `do_action( 'simplesharing' );` in the place you want them to appear.
+Yes, you can add them to your template. I'm using Andrew Nacin's suggestion of using a WordPress action instead of a template tag. Put `echo apply_filters( 'simplesharing', '' );` in the place you want them to appear.
 
 = Is there a shortcode? =
-Yes! There are no shortcodes options/attributes, so its super-simple. Put `[simplesharing]` into any post, page, or content editor and the buttons will appear there.
+Yes! There are no shortcodes options/attributes, so its super-simple. Put `[simplesharingbuttons]` into any post, page, or content editor and the buttons will appear there.
 
-= Is there a widget? =
-No. If there is demand for a widget, I'll add it in a future version though.
-
-= What are the fields in the "Your Social Accounts" for?
-When someone shares something on Delicious, Twitter, and/or tumblr, it can attributed back to the source (that would be you). For example, on Twitter, it would look something like:
+= Do I need to use the fields in the "Your Social Accounts" section?
+When someone shares something on Delicious, tumblr, and/or Twitter, it can attributed back to the source (that would be you). For example, on Twitter, it would look something like:
 
 Article Title http://article-link.com via @your-twitter-name
 
@@ -99,11 +96,11 @@ That last bit attributes the tweet back to you and you're notified someone tweet
 
 Same goes for tumblr and Delicious.
 
-= Why isn't a button for "___"? =
-These are simple sharing buttons using URLs provided by the network. Only these services provide that kind of thing; the other don't. I'd love to include Instagram, Flickr, YouTube, and others, but they all require you signing into their APIs in order to post. There are plenty of other plugins if you need those options. This one is meant to be simple.
+= Why isn't there a button for "___"? =
+These buttons use URLs provided by the network. I have included as many of these options as possible, but not all networks provide a sharing URL. I'd love to include Instagram, Flickr, YouTube, and others, but they all require you signing into their APIs in order to post. There are plenty of other plugins if you need those options.
 
 = Can I reorder the buttons? =
-Not currently, but I'm working on it. I wanted to get a 1.0 version out ASAP, so here it is. Soon.
+Yes! Just drag any button into the order you prefer and it saves its position automatically.
 
 = What about a modal window instead of a pop-up? =
 Yeah, I'd like that also. Soon.

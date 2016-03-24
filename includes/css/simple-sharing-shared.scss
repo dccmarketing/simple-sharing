@@ -77,11 +77,12 @@ $networks:
 	'digg' #000,
 	'douban' #072,
 	'email' #0088cc,
+	'evernote' #7ac142,
 	'facebook' #3b5997,
 	'google' #DC4E41,
 	'linkedin' #0073b2,
 	'pinterest' #cb2027,
-	'qzone' #cb2027,
+	'qzone' #ffc028,
 	'reddit' #ff5700,
 	'renren' #005EAC,
 	'stumbleupon' #eb4924,
@@ -162,3 +163,45 @@ $networks:
 	}
 }
 
+.modal-background {
+	background-color: #000;
+	bottom 			: 0;
+	height 			: 100%;
+	left 			: 0;
+	opacity 		: 0;
+	position 		: fixed;
+	right 			: 0;
+	top 			: 0;
+	transition 		: 0.5 ease;
+	visibility 		: hidden;
+	width 			: 100%;
+	z-index 		: -1;
+}
+
+.modal-content {
+	background-color: white;
+	border-radius 	: 10px;
+	max-width 		: 50%;
+	min-height 		: 240px;
+	min-width 		: 320px;
+	left 			: 50%;
+	padding 		: 10px;
+	position 		: absolute;
+	top 			: 50%;
+	transition 		: 0.5 ease;
+	transform 		: translate( -50%, -50% );
+	visibility 		: hidden;
+	z-index 		: -1;
+}
+
+.modal-background.active {
+	opacity 	: 0.5;
+	visibility 	: visible;
+	z-index 	: 1000;
+}
+
+.modal-content.active {
+	opacity 	: 1;
+	visibility 	: visible;
+	z-index 	: 1000;
+}

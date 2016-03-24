@@ -22,7 +22,7 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package		Simple_Sharing
+ * @package		Sharing_URL_Buttons
  */
 
 // If uninstall not called from WordPress, then exit.

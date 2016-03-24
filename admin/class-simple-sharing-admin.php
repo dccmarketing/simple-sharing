@@ -6,8 +6,8 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/admin
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/admin
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/admin
  * @author 		Slushman <chris@slushman.com>
  */
-class Simple_Sharing_Admin {
+class Sharing_URL_Buttons_Admin {
 
 	/**
 	 * The plugin options.
@@ -100,7 +100,7 @@ class Simple_Sharing_Admin {
 
 		}
 
-		wp_localize_script( $this->plugin_name . '-save-button-order', 'Simple_Sharing_Ajax', array(
+		wp_localize_script( $this->plugin_name . '-save-button-order', 'Sharing_URL_Buttons_Ajax', array(
 				'error_message' => esc_html__( 'There was a problem saving the button order.', 'simple-sharing' ),
 				'sssNonce' 		=> wp_create_nonce( 'simple-sharing-nonce' )
 			)
@@ -175,6 +175,8 @@ class Simple_Sharing_Admin {
 	/**
 	 * Creates a select field
 	 *
+	 * Note: label is blank since its created in the Settings API
+	 *
 	 * @param 	array 		$args 			The arguments for the field
 	 * @return 	string 						The HTML field
 	 */
@@ -185,7 +187,7 @@ class Simple_Sharing_Admin {
 		$defaults['class'] 			= 'widefat';
 		$defaults['context'] 		= '';
 		$defaults['description'] 	= '';
-		$defaults['label'] 			= $args['id'];
+		$defaults['label'] 			= '';
 		$defaults['name'] 			= $this->plugin_name . '-options[' . $args['id'] . ']';
 		$defaults['selections'] 	= array();
 		$defaults['value'] 			= '';
@@ -284,15 +286,17 @@ class Simple_Sharing_Admin {
 		$options[] 	= array( 'account-tumblr', 'text', '' );
 		$options[] 	= array( 'account-twitter', 'text', '' );
 		$options[] 	= array( 'button-baidu', 'checkbox', 0 );
+		$options[] 	= array( 'button-behavior', 'select', '' );
 		$options[] 	= array( 'button-buffer', 'checkbox', 0 );
 		$options[] 	= array( 'button-delicious', 'checkbox', 0 );
 		$options[] 	= array( 'button-digg', 'checkbox', 0 );
 		$options[] 	= array( 'button-douban', 'checkbox', 0 );
 		$options[] 	= array( 'button-email', 'checkbox', 0 );
+		$options[] 	= array( 'button-evernote', 'checkbox', 0 );
 		$options[] 	= array( 'button-facebook', 'checkbox', 0 );
 		$options[] 	= array( 'button-google', 'checkbox', 0 );
 		$options[] 	= array( 'button-linkedin', 'checkbox', 0 );
-		$options[] 	= array( 'button-order', 'hidden', 'Baidu,Buffer,Delicious,Digg,Douban,Email,Facebook,Google,LinkedIn,Pinterest,QZone,Reddit,Renren,Stumbleupon,tumblr,Twitter,VK,Weibo,Xing' );
+		$options[] 	= array( 'button-order', 'hidden', 'Baidu,Buffer,Delicious,Digg,Douban,Email,Evernote,Facebook,Google,LinkedIn,Pinterest,QZone,Reddit,Renren,Stumbleupon,tumblr,Twitter,VK,Weibo,Xing' );
 		$options[] 	= array( 'button-pinterest', 'checkbox', 0 );
 		$options[] 	= array( 'button-qzone', 'checkbox', 0 );
 		$options[] 	= array( 'button-reddit', 'checkbox', 0 );
@@ -319,7 +323,7 @@ class Simple_Sharing_Admin {
 	 */
 	public function link_row( $links, $file ) {
 
-		if ( SIMPLE_SHARING_FILE === $file ) {
+		if ( SHARING_URL_BUTTONS_FILE === $file ) {
 
 			$links[] = '<a href="http://twitter.com/slushman">Twitter</a>';
 
@@ -487,6 +491,25 @@ class Simple_Sharing_Admin {
 			)
 		);
 
+		add_settings_field(
+			'button-behavior',
+			apply_filters( $this->plugin_name . '-label-button-behavior', esc_html__( 'Button Behavior', 'simple-sharing' ) ),
+			array( $this, 'field_select' ),
+			$this->plugin_name,
+			$this->plugin_name . '-buttons',
+			array(
+				'blank' 		=> 'Nothing, Just a Link',
+				'class' 		=> '', // leave this blank, don't want default styling
+				'description' 	=> 'What do you want to happen when someone clicks a button?',
+				'id' 			=> 'button-behavior',
+				'selections' 	=> array(
+					array( 'label' => 'Modal Window', 'value' => 'modal' ),
+					array( 'label' => 'Popup Window', 'value' => 'popup' )
+				),
+				'value' 		=> 'icon'
+			)
+		);
+
 	} // register_fields()
 
 	/**
@@ -571,7 +594,7 @@ class Simple_Sharing_Admin {
 
 			if ( ! isset( $input[$option[0]] ) ) { continue; }
 
-			$sanitizer = new Simple_Sharing_Sanitize();
+			$sanitizer = new Sharing_URL_Buttons_Sanitize();
 
 			$sanitizer->set_data( $input[$option[0]] );
 			$sanitizer->set_type( $option[1] );

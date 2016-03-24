@@ -6,8 +6,8 @@
  * @link       http://slushman.com
  * @since      1.0.0
  *
- * @package    Simple_Sharing
- * @subpackage Simple_Sharing/admin/partials
+ * @package    Sharing_URL_Buttons
+ * @subpackage Sharing_URL_Buttons/admin/partials
  */
 
 if ( ! empty( $atts['label'] ) ) {
@@ -24,11 +24,13 @@ if ( ! empty( $atts['label'] ) ) {
 
 if ( ! empty( $atts['blank'] ) ) {
 
-	?><option><?php esc_html_e( $atts['blank'], 'simple-sharing' ); ?></option><?php
+	?><option value><?php esc_html_e( $atts['blank'], 'simple-sharing' ); ?></option><?php
 
 }
 
 foreach ( $atts['selections'] as $selection ) {
+
+	showme( $selection );
 
 	if ( is_array( $selection ) ) {
 

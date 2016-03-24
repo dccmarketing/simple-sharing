@@ -9,8 +9,8 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/includes
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since 		1.0.0
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/includes
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/includes
  * @author 		Slushman <chris@slushman.com>
  */
-class Simple_Sharing {
+class Sharing_URL_Buttons {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Simple_Sharing {
 	 *
 	 * @since 		1.0.0
 	 * @access 		protected
-	 * @var 		Simple_Sharing_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var 		Sharing_URL_Buttons_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -53,7 +53,7 @@ class Simple_Sharing {
 	 *
 	 * @since 		1.0.0
 	 * @access 		private
-	 * @var 		Simple_Sharing_Sanitize    $sanitizer    Sanitizes data
+	 * @var 		Sharing_URL_Buttons_Sanitize    $sanitizer    Sanitizes data
 	 */
 	private $sanitizer;
 
@@ -62,7 +62,7 @@ class Simple_Sharing {
 	 *
 	 * @since 		1.0.0
 	 * @access 		protected
-	 * @var 		Simple_Sharing_Shared    $shared    Methods shared by the admin and public
+	 * @var 		Sharing_URL_Buttons_Shared    $shared    Methods shared by the admin and public
 	 */
 	protected $shared;
 
@@ -101,10 +101,10 @@ class Simple_Sharing {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Simple_Sharing_Loader. Orchestrates the hooks of the plugin.
-	 * - Simple_Sharing_i18n. Defines internationalization functionality.
-	 * - Simple_Sharing_Admin. Defines all hooks for the dashboard.
-	 * - Simple_Sharing_Public. Defines all hooks for the public side of the site.
+	 * - Sharing_URL_Buttons_Loader. Orchestrates the hooks of the plugin.
+	 * - Sharing_URL_Buttons_i18n. Defines internationalization functionality.
+	 * - Sharing_URL_Buttons_Admin. Defines all hooks for the dashboard.
+	 * - Sharing_URL_Buttons_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -118,45 +118,45 @@ class Simple_Sharing {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-simple-sharing-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sharing-url-buttons-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-simple-sharing-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sharing-url-buttons-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-simple-sharing-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sharing-url-buttons-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-simple-sharing-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sharing-url-buttons-public.php';
 
 		/**
 		 * The class responsible for sanitizing user input
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-simple-sharing-sanitize.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sharing-url-buttons-sanitize.php';
 
 		/**
 		 * The class with methods shared by admin and public
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-simple-sharing-shared.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sharing-url-buttons-shared.php';
 
-		$this->loader = new Simple_Sharing_Loader();
-		$this->sanitizer = new Simple_Sharing_Sanitize();
-		$this->shared = new Simple_Sharing_Shared( $this->plugin_name, $this->version );
+		$this->loader = new Sharing_URL_Buttons_Loader();
+		$this->sanitizer = new Sharing_URL_Buttons_Sanitize();
+		$this->shared = new Sharing_URL_Buttons_Shared( $this->plugin_name, $this->version );
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Simple_Sharing_i18n class in order to set the domain and to register the hook
+	 * Uses the Sharing_URL_Buttons_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since 		1.0.0
@@ -164,7 +164,7 @@ class Simple_Sharing {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Simple_Sharing_i18n();
+		$plugin_i18n = new Sharing_URL_Buttons_i18n();
 		$plugin_i18n->set_domain( $this->get_plugin_name() );
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -179,11 +179,11 @@ class Simple_Sharing {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Simple_Sharing_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Sharing_URL_Buttons_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'plugin_action_links_' . SIMPLE_SHARING_FILE, $plugin_admin, 'link_settings' );
+		$this->loader->add_action( 'plugin_action_links_' . SHARING_URL_BUTTONS_FILE, $plugin_admin, 'link_settings' );
 		$this->loader->add_action( 'plugin_row_meta', $plugin_admin, 'link_row', 10, 2 );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
@@ -202,11 +202,12 @@ class Simple_Sharing {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Simple_Sharing_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Sharing_URL_Buttons_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $this, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
+		$this->loader->add_action( 'init', $plugin_public, 'add_thickbox' );
 		$this->loader->add_filter( 'the_content', $plugin_public, 'add_sharing_buttons', 19 );
 
 		/**
@@ -255,7 +256,7 @@ class Simple_Sharing {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Simple_Sharing_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Sharing_URL_Buttons_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

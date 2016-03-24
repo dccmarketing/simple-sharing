@@ -9,8 +9,8 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/includes
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since 		1.0.0
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/includes
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/includes
  * @author 		Slushman <chris@slushman.com>
  */
-class Simple_Sharing_i18n {
+class Sharing_URL_Buttons_i18n {
 
 	/**
 	 * The domain specified for this plugin.

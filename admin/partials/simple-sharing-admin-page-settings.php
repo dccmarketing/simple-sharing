@@ -6,8 +6,8 @@
  * @link       http://slushman.com
  * @since      1.0.0
  *
- * @package    Simple_Sharing
- * @subpackage Simple_Sharing/admin/partials
+ * @package    Sharing_URL_Buttons
+ * @subpackage Sharing_URL_Buttons/admin/partials
  */
 
 ?><h1><?php echo esc_html( get_admin_page_title() ); ?></h1>

@@ -6,11 +6,11 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/includes
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/includes
  */
 
-class Simple_Sharing_Shared {
+class Sharing_URL_Buttons_Shared {
 
 	/**
 	 * The plugin options.
@@ -132,6 +132,7 @@ class Simple_Sharing_Shared {
 			case 'Digg' 		: $return = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="digg"><path d="M5.2 4.1v9.5H.1V6.8h3.2V4.1h1.9zM3.3 8.4H2.1V12h1.2V8.4zM6 6h2V4H6v2zm0 7.6h2V6.8H6v6.8zm8-6.8v9.1H8.8v-1.6H12v-.8H8.8V6.8H14zm-2 1.6h-1.2V12H12V8.4zm7.9-1.6v9.1h-5.1v-1.6H18v-.8h-3.2V6.8h5.1zm-2 1.6h-1.2V12h1.2V8.4z"/></svg>'; break;
 			case 'Douban' 		: $return = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="douban"><path d="M.2 19.4v-1.8h4.9l-1.5-4.8H1.9l.2-8.6h15.8v8.5h-1.7l-1.3 4.8 4.8-.2.1 2H.2v.1zm7.9-1.8h3.6l1.7-4.8h-7l1.7 4.8zm6.7-10.9H5.2l-.1 3.7h9.7V6.7zM.8.6H19v1.8H.8V.6z"/></svg>'; break;
 			case 'Email' 		: $return = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="email"><path d="M19 14.5v-9q0-.62-.44-1.06T17.5 4H3.49q-.62 0-1.06.44T1.99 5.5v9q0 .62.44 1.06t1.06.44H17.5q.62 0 1.06-.44T19 14.5zm-1.31-9.11q.15.15.175.325t-.04.295-.165.22L13.6 9.95l3.9 4.06q.26.3.06.51-.09.11-.28.12t-.28-.07l-4.37-3.73-2.14 1.95-2.13-1.95-4.37 3.73q-.09.08-.28.07t-.28-.12q-.2-.21.06-.51l3.9-4.06-4.06-3.72q-.1-.1-.165-.22t-.04-.295.175-.325q.4-.4.95.07l6.24 5.04 6.25-5.04q.55-.47.95-.07z"/></svg>'; break;
+			case 'Evernote' 	: $return = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="evernote"><path d="M3.4 4h1.8c.1 0 .2-.1.2-.2v-2c0-.4.1-.7.2-.9l.1-.1-3.6 3.5c.1 0 .2-.1.2-.1.3-.1.7-.2 1.1-.2zm14.3-.4c-.1-.8-.6-1.2-1-1.3-.5-.2-1.4-.3-2.5-.5-.9-.1-2-.1-2.7-.1-.1-.5-.5-1-.9-1.2C9.5.1 7.7.2 7.3.3c-.4.1-.8.3-1 .6-.1.3-.2.5-.2.9v2.1c0 .4-.3.7-.7.7H3.5c-.4 0-.7.1-.9.2-.2 0-.4.2-.5.3-.2.3-.3.8-.3 1.2 0 0 0 .3.1 1 .1.5.6 4 1.1 5.1.2.4.3.6.7.8.9.4 2.9.8 3.9.9.9.1 1.5.4 1.9-.4 0 0 .1-.2.2-.5.3-.9.4-1.8.4-2.4 0-.1.1-.1.1 0 0 .4-.1 1.9 1.1 2.3.4.2 1.4.3 2.3.4.9.1 1.5.4 1.5 2.6 0 1.3-.3 1.5-1.7 1.5-1.2 0-1.6 0-1.6-.9 0-.8.8-.7 1.3-.7.2 0 .1-.2.1-.7 0-.5.3-.7 0-.7-1.9-.1-3.1 0-3.1 2.4 0 2.2.8 2.6 3.6 2.6 2.1 0 2.9-.1 3.8-2.8.2-.5.6-2.2.9-5-.1-1.5-.4-6.8-.7-8.2zM14 9.5h-.8c.1-.5.3-1.2 1.1-1.2.9 0 1 .9 1 1.4-.3-.1-.8-.2-1.3-.2z"/></svg>'; break;
 			case 'Facebook' 	: $return = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="facebook"><path d="M8.46 18h2.93v-7.3h2.45l.37-2.84h-2.82V6.04q0-.69.295-1.035T12.8 4.66h1.51V2.11Q13.36 2 12.12 2q-1.67 0-2.665.985T8.46 5.76v2.1H6v2.84h2.46V18z"/></svg>'; break;
 			case 'Google' 		: $return = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="googleplus"><path d="M2.8 4.9c2.3-1.7 5.7-1.5 7.8.5-.6.5-1.1 1.1-1.7 1.6-1.6-1.4-4.2-1.2-5.5.4-1.6 1.8-1.1 4.9 1 6.1 2 1.2 5 .2 5.5-2.2H6.3V9.1h6c.2 1.8-.2 3.8-1.4 5.2-1.5 1.8-4.2 2.4-6.4 1.7-2.1-.6-3.9-2.5-4.3-4.7-.5-2.4.5-5 2.6-6.4zM16.3 7.3h1.8v1.8h1.8v1.8h-1.8v1.8h-1.8v-1.8h-1.8V9.1h1.8V7.3z"/></svg>'; break;
 			case 'LinkedIn' 	: $return = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="linkedin"><path d="M2.5 5C1 5 .1 4 .1 2.8.1 1.6 1.1.6 2.5.6c1.5 0 2.4 1 2.4 2.2C4.9 4 4 5 2.5 5zm2.1 14.4H.4V6.7h4.2v12.7zm15.3 0h-4.2v-6.8c0-1.7-.6-2.9-2.1-2.9-1.2 0-1.9.8-2.2 1.5-.1.3-.1.7-.1 1v7.1H6.9c.1-11.4 0-12.6 0-12.6h4.2v1.9c.6-.9 1.6-2.1 3.8-2.1 2.8 0 4.9 1.8 4.9 5.7v7.2z"/></svg>'; break;

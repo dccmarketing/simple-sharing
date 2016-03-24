@@ -10,7 +10,7 @@
 			var $this = $(this);
 			var box = $this.children( 'input' );
 
-			$this.click( function() {
+			$this.on( 'click', function() {
 
 				if ( box.is( ':checked' ) ) {
 

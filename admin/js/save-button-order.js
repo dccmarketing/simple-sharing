@@ -13,13 +13,13 @@
 			opacity: 0.6,
 			update: function() {
 
-				var data = $(this).sortable('serialize') + '&action=save_button_order&sssNonce=' + Simple_Sharing_Ajax.sssNonce;
+				var data = $(this).sortable('serialize') + '&action=save_button_order&sssNonce=' + Sharing_URL_Buttons_Ajax.sssNonce;
 
 				$.post( ajaxurl, data, function( r ){
 
 					if ( r <= 0 ) {
 
-						$("#button-status").html( '<span class="status">' + Simple_Sharing_Ajax.error_message + '</span>' );
+						$("#button-status").html( '<span class="status">' + Sharing_URL_Buttons_Ajax.error_message + '</span>' );
 						$("#button-status").addClass( 'error' );
 						$("#button-status").fadeIn( 'fast' );
 						$("#button-status").fadeOut( 2000 );

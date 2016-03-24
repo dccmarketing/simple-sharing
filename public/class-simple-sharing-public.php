@@ -6,8 +6,8 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/public
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/public
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/public
  * @author 		Slushman <chris@slushman.com>
  */
-class Simple_Sharing_Public {
+class Sharing_URL_Buttons_Public {
 
 	/**
 	 * The plugin options.
@@ -155,6 +155,16 @@ class Simple_Sharing_Public {
 
 	} // add_sharing_buttons()
 
+	public function add_thickbox() {
+
+		if ( ! empty( $this->options['button-behavior'] ) && 'modal' === $this->options['button-behavior'] ) {
+
+			add_thickbox();
+
+		}
+
+	} // add_thickbox()
+
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
@@ -164,16 +174,28 @@ class Simple_Sharing_Public {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-sharing-public.css', array(), $this->version, 'all' );
 
+
 	}
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
+	 * Enqueues the appropriate script based on the plugin option for button behavior.
+	 *
 	 * @since 		1.0.0
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/popup.min.js', array( 'jquery' ), $this->version, true );
+		if ( ! empty( $this->options['button-behavior'] ) && 'modal' === $this->options['button-behavior'] ) {
+
+			//wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/modal.min.js', array( 'thickbox' ), $this->version, true );
+			wp_enqueue_script( 'thickbox', null,  array( 'jquery' ), $this->version, true );
+
+		} elseif ( ! empty( $this->options['button-behavior'] ) && 'popup' === $this->options['button-behavior'] ) {
+
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/popup.min.js', array( 'jquery' ), $this->version, true );
+
+		}
 
 	}
 
@@ -277,6 +299,12 @@ class Simple_Sharing_Public {
 				$base_url 				= 'http://www.douban.com/recommend/';
 			break;
 
+			case 'Evernote':
+				$args['url'] 			= $link;
+				$args['title'] 			= $title;
+				$base_url 				= 'https://www.evernote.com/clip.action';
+			break;
+
 			case 'Facebook':
 				$args['u'] 				= $link;
 				$base_url 				= 'https://www.facebook.com/sharer/sharer.php';
@@ -305,9 +333,9 @@ class Simple_Sharing_Public {
 
 			case 'QZone':
 				$args['url'] 			= $link;
-				$args['description'] 	= $excerpt;
-				$args['media'] 			= $image;
-				$base_url 				= 'https://pinterest.com/pin/create/button/';
+				$args['title'] 			= $title;
+				$args['summary'] 		= $excerpt;
+				$base_url 				= 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey';
 			break;
 
 			case 'Reddit':
@@ -384,6 +412,14 @@ class Simple_Sharing_Public {
 
 		} // switch
 
+		if ( ! empty( $this->options['button-behavior'] ) && 'modal' === $this->options['button-behavior'] ) {
+
+			$args['TB_iframe'] 	= 'true';
+			$args['height'] 	= '400';
+			$args['width'] 		= '550';
+
+		}
+
 		$return = esc_url( add_query_arg( $args, $base_url ) );
 
 		return $return;
@@ -418,7 +454,46 @@ class Simple_Sharing_Public {
 
 		ob_start();
 
-		include( plugin_dir_path( __FILE__ ) . 'partials/simple-sharing-public-display.php' );
+		$shared 	= new Sharing_URL_Buttons_Shared( $this->plugin_name, $this->version );
+		$buttons 	= $shared->get_button_array();
+		$displays 	= array();
+
+		foreach ( $buttons as $button ) {
+
+			if ( ! empty( $this->options['button-' . strtolower( $button )] ) ) {
+
+				$displays[] = $button;
+
+			}
+
+		}
+
+		if ( empty( $displays ) ) { return; }
+
+		if ( ! empty( $this->options['button-behavior'] ) && 'modal' === $this->options['button-behavior'] ) {
+
+			$class = 'modal thickbox';
+
+		} elseif ( ! empty( $this->options['button-behavior'] ) && 'popup' === $this->options['button-behavior'] ) {
+
+			$class = 'popup';
+
+		}
+
+		$showthese = array();
+
+		foreach ( $displays as $button ) {
+
+			$lower = strtolower( $button );
+
+			if ( empty( $this->options['button-' . $lower] ) ) { continue; }
+
+			$url 			= $this->get_url( $button );
+			$showthese[] 	= array( 'lower' => $lower, 'name' => $button, 'url' => $url );
+
+		} // foreach
+
+		include( plugin_dir_path( __FILE__ ) . 'partials/simple-sharing-buttons.php' );
 
 		$output = ob_get_contents();
 

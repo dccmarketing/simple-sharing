@@ -5,11 +5,11 @@
  *
  * @since      1.0.0
  *
- * @package    Simple_Sharing
- * @subpackage Simple_Sharing/includes
+ * @package    Sharing_URL_Buttons
+ * @subpackage Sharing_URL_Buttons/includes
  */
 
-class Simple_Sharing_Sanitize {
+class Sharing_URL_Buttons_Sanitize {
 
 	/**
 	 * The data to be sanitized

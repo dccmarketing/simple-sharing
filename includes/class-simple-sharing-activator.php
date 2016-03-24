@@ -9,10 +9,10 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/includes
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/includes
  */
-class Simple_Sharing_Activator {
+class Sharing_URL_Buttons_Activator {
 
 	/**
 	 * Creates the plugin settings and assigns default values.
@@ -21,10 +21,10 @@ class Simple_Sharing_Activator {
 	 */
 	public static function activate() {
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-simple-sharing-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sharing-url-buttons-admin.php';
 
 		$opts 		= array();
-		$options 	= Simple_Sharing_Admin::get_options_list();
+		$options 	= Sharing_URL_Buttons_Admin::get_options_list();
 
 		foreach ( $options as $option ) {
 

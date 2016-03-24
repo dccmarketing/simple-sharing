@@ -3,7 +3,7 @@
 /**
  * @link				http://slushman.com
  * @since				1.0.0
- * @package				Simple_Sharing
+ * @package				Sharing_URL_Buttons
  *
  * @wordpress-plugin
  * Plugin Name: 		Simple Sharing
@@ -24,30 +24,30 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Used for referring to the plugin file or basename
-if ( ! defined( 'SIMPLE_SHARING_FILE' ) ) {
-	define( 'SIMPLE_SHARING_FILE', plugin_basename( __FILE__ ) );
+if ( ! defined( 'SHARING_URL_BUTTONS_FILE' ) ) {
+	define( 'SHARING_URL_BUTTONS_FILE', plugin_basename( __FILE__ ) );
 }
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-simple-sharing-activator.php
+ * This action is documented in includes/class-sharing-url-buttons-activator.php
  */
-function activate_Simple_Sharing() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-simple-sharing-activator.php';
-	Simple_Sharing_Activator::activate();
+function activate_Sharing_URL_Buttons() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sharing-url-buttons-activator.php';
+	Sharing_URL_Buttons_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-simple-sharing-deactivator.php
+ * This action is documented in includes/class-sharing-url-buttons-deactivator.php
  */
-function deactivate_Simple_Sharing() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-simple-sharing-deactivator.php';
-	Simple_Sharing_Deactivator::deactivate();
+function deactivate_Sharing_URL_Buttons() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sharing-url-buttons-deactivator.php';
+	Sharing_URL_Buttons_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_Simple_Sharing' );
-register_deactivation_hook( __FILE__, 'deactivate_Simple_Sharing' );
+register_activation_hook( __FILE__, 'activate_Sharing_URL_Buttons' );
+register_deactivation_hook( __FILE__, 'deactivate_Sharing_URL_Buttons' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -64,10 +64,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-simple-sharing.php';
  *
  * @since 		1.0.0
  */
-function run_Simple_Sharing() {
+function run_Sharing_URL_Buttons() {
 
-	$plugin = new Simple_Sharing();
+	$plugin = new Sharing_URL_Buttons();
 	$plugin->run();
 
 }
-run_Simple_Sharing();
+run_Sharing_URL_Buttons();

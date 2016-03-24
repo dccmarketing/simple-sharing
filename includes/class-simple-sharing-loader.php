@@ -6,8 +6,8 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/includes
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package		Simple_Sharing
- * @subpackage 	Simple_Sharing/includes
+ * @package		Sharing_URL_Buttons
+ * @subpackage 	Sharing_URL_Buttons/includes
  * @author 		Slushman <chris@slushman.com>
  */
-class Simple_Sharing_Loader {
+class Sharing_URL_Buttons_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
